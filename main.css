@@ -5,33 +5,21 @@
 }
 .flex-container{
     display: flex;
-    border: 10px solid red;
     height: 100vh;
     flex-wrap: wrap;
     justify-content: space-around;
     overflow-y: auto;
-    /* align-content: center; */
-    /* flex: 1; */
 }
+/* .flex-items{
 
-.flex-items{
-    
-    /* flex: 1;  */
-    /* width: 300px; */
-    border: 10px solid green;
-    /* height: 100px; */
-     
-}
+} */
 .score{
-    /* flex-shrink: 1; */
-    /* flex-basis: 300px; */
     height: 300px;
-   width: calc(45% - 20px);
+    width: calc(45% - 20px);
     margin: 10px;
     padding: 20px;
     text-align: center;
     overflow: auto;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -46,7 +34,7 @@
     text-align: center;
     height: 70px;
     width: calc(100% - 20px);
-     margin:10px;
+    margin:10px;
  }
  .displayBoard{
     display: flex;
@@ -57,70 +45,46 @@
     flex-direction: column;
     height: 100px;
     width: calc(100% - 20px);
-     margin:10px;
+    margin:10px;
  }
  .weapon{
-     /* flex: 1; */
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center; 
-     /* align-content: center; */
-     align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center;
     height: 150px;
-        width: calc(30% - 20px);
-         margin:10px;
+    width: calc(30% - 20px);
+    margin:10px;
  }
  .reset{
     display: flex;
     flex-wrap: wrap;
-    
     justify-content: center;
     height: 50px;
     width: calc(100% - 20px);
-     margin:10px;
+    margin:10px;
  }
  h1{
     display: block;
-     /* flex: 1 1 2000px; */
-     /* padding: 10px; */
-     width: 100%;
-     height: 100px;
-     font-size: 60px;
-     border: 5px solid rgb(149, 202, 79);
-     /* background-color: rgb(204, 105, 174); */
-     /* margin:0px; */
- }
+    width: 100%;
+    height: 100px;
+    font-size: 60px;
+    }
  h2{
     font-size: 40px;
-    background-color: rgb(80, 77, 212);
     margin:0px;
 }
 h3{
-    
-    /* flex: 2; */
-    border: 5px solid aqua;
-    
     font-size: 30px;
     margin:0px;
 }
 h4{
     flex: 1;
-    /* display: block; */
-     /* display: flex; */
-   /* flex-wrap: wrap; */
-    
-    /* justify-content: center; */
-    /* align-items: flex-end; */
-    /* align-self: flex-end; */
     font-size: 25px;
     height: 40px;
-    border:3px solid rgb(93, 124, 8);
     margin: 0px;
 }
 .scoreBoard{
-    /* flex: 1; */
-    /* align-self: center; */
-    border: 5px solid rgb(255, 0, 64);
     height: 60px;
     width: 100px;
 }
@@ -139,67 +103,38 @@ button{
         margin: -10px 0px;
     }
     .score{
-        /* flex-shrink: 1; */
-        /* flex-basis: 300px; */
         height: 100px;
-       /* width: calc(45% - 20px); */
-         margin:  0;
-       /* padding: 20px;
-        text-align: center; */
-    
+        margin:  0;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         align-content: center;
-        /* align-content: flex-end; */
         align-items: center;
     }
     .rounds, .displayBoard{ 
         display: flex;
-        /* flex: 1; */
         flex-wrap: wrap;
         justify-content: center;
-        /* align-content: space-around; */
-        /* align-content: flex-end; */
-        /* text-align: center; */
         align-items: center;
         height: 80px;
         width: 100%;
-        /* width: calc(100% - 20px); */
-         /* margin:10px; */
-     }
-     h1 {
-        /* display: flex; */
-        /* flex: 1; */
-        /* justify-content: center; */
-        /* align-content: space-around; */
+    }
+    h1 {
         margin:  0;
-         font-size: 30px;
-         height: 40px;
-         /* align-content: flex-start; */
-         
-     }
+        font-size: 30px;
+        height: 40px;
+    }
      h2, h3 {
-        /* display: flex; */
-        /* flex: 1; */
-        /* justify-content: center; */
-        /* align-content: space-around; */
+        
         margin:  0;
          font-size: 25px;
          height: 30px;
-         /* align-content: flex-end; */
-         
-     }
-     .scoreBoard{
-        /* display: flex; */
-        /* flex: 1; */
-        border: 5px solid rgb(21, 255, 0);
+    }
+    .scoreBoard{
         height: 60px;
         width: 100px;
     }
     .scoreBoard4{
-        /* flex: 1; */
-        border: 5px solid rgb(21, 255, 0);
         height: 60px;
         width: 100%;
     }
@@ -207,19 +142,14 @@ button{
         flex: 1;
         display: flex;
         flex-wrap: wrap;
-        /* justify-content: center; 
-         
-        align-items: center; */
-       height: 70px;
-           /* width: calc(33.33333% - 20px); */
-           width: 33.33333%;
-            padding:0px;
+        height: 70px;
+        width: 33.33333%;
+        padding:0px;
     }
     
     button{
         font-size: 15px;
         height: 30px;
-        /* width: 50px; */
     }
 }
 
