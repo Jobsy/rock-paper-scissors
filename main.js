@@ -1,220 +1,192 @@
-// Code goes here
 
-
-let  playerScore = 0;
+let playerScore = 0;
 let computerScore = 0;
 let result;
-let rounds=5;
+let rounds = 5;
+let displayBoard1 = document.getElementById('dBoard');
+let displayBoard2 = document.getElementById('dBoard2');
 
 function computerPlay() {
-    let computerChoice = ["rock", "paper", "scissors"];
-    let randomChoice = Math.floor(Math.random()*computerChoice.length);
+
+    let computerChoice = ['rock', 'paper', 'scissors'];
+    let randomChoice = Math.floor(Math.random() * computerChoice.length);
     console.log(computerChoice[randomChoice] + 'jhvcxhxd')
     return computerChoice[randomChoice]
+
 }
 
-function userPlay() {
-    // let userChoice = prompt("What's your choice").toLowerCase();
-    // if (userChoice === "") {
-    //   console.log("pls make a choice");
-    //   return "pls make a choice"
-    // }else
-    // {console.log(userChoice)
-    // return userChoice;}
 
-    let displayBoard = document.getElementById('dBoard');
-    
-    displayBoard.textContent =  "Pick a weapon by click on any of the button below";
+function userPlay() {
+
+    displayBoard1.textContent = `Pick a weapon by click on any of the button below`;
+
+    let playerSelection;
+    let computerSelection;
     let userChoice;
-    // console.log(userChoice)
-    
+
     let btns = document.querySelectorAll('button');
-    // console.log(btns)
+
     btns.forEach((button) => {
         button.addEventListener('click', event => {
-            if(event.target.textContent === 'Restart game'){
-                console.log("Clicked, event.target.textContent");
-                displayBoard.textContent = 'Game restated ';
-                restartGame();
+
+            if (event.target.textContent === `Restart game`) {
+                // console.log("Clicked, event.target.textContent");
+                displayBoard1.textContent = `Game restated`;
+                displayBoard2.textContent = `Starting...`;
+                return restartGame();
             }
-           else  if (event.target.nodeName === 'BUTTON') {
-                
-            if(restartGame){
-                    console.log("Clicked", event.target.textContent);
-                displayBoard.textContent = 'You chose '+ event.target.textContent;
-                userChoice = event.target.textContent
-                // console.log(userChoice + '-----hhhhhhhh')
-                // computerPlay();
-                // userChoice ='yessss'
-                // console.log(computerPlay() + '  12587jbjjkhrr');
-                // return event.target.textContent
-                // return userChoice;
-                rounds--}
-              } 
-              
-            //   console.log(userChoice + '-----hhhhhhhh')
-            //   console.log(computerPlay() + '  12587jbjjkhrr');
-            //  let playerSelection = console.log(userChoice + '  12587jbjjkhrr');
-            //   let computerSelection = console.log(computerPlay() + '  12587jbjjkhrr');
-            
-    //         let playerSelection = userChoice;
-    //         let computerSelection = computerPlay();   
-    //   result = playRound(playerSelection, computerSelection)
-    //     if (result == "You win") {
-    //       playerScore++
-    //     } else if (result == "You lose"){
-    //       computerScore++
-    //     }
+            else if (event.target.nodeName === `BUTTON`) {
+                computerSelection = computerPlay();
+                // console.log("Clicked", event.target.textContent);
+                displayBoard1.textContent = `Your  ${event.target.textContent}  VS computer's  ${computerSelection}`;
 
-        
-               
-              
-                  let playerSelection = userChoice;
-              let computerSelection = computerPlay();
-              result = playRound(playerSelection, computerSelection)
-              if(rounds < 0){
-                console.log('New game')
-             restartGame()}  
-              else if (result == "You win") {
-                  playerScore++
-                } else if (result == "You lose"){
-                  computerScore++
+                playerSelection = event.target.textContent;
+
+                rounds--
+            }
+
+            result = playRound(playerSelection, computerSelection)
+
+            if (rounds > 0) {
+                if (result == "You win") {
+                    playerScore++
+                } else if (result == "You lose") {
+                    computerScore++
                 }
+            }
+            else if (rounds === 0) {
+                if (result == "You win") {
+                    playerScore++
+                    document.getElementById('restartGame').disabled = true;
+                } else if (result == "You lose") {
+                    computerScore++
+                    document.getElementById('restartGame').disabled = true;
+                }
+                else { document.getElementById('restartGame').disabled = true; }
+            }
 
-            //     for(let i = 0; i < 5; i++) {
-            //   }
-              console.log(rounds)
-            //   console.log(result)
-    console.log(playerScore)
-    console.log(computerScore)
-    console.log(winner())
-    // game()
+            else {
 
-            //   else if (event.target.nodeName === 'button') {
-            //     console.log("Clicked", event.target.textContent);
-            //   } else if (event.target.nodeName === ) {
-            //     console.log("Clicked", event.target.textContent);
-            //   }
-            // console.log(userChoice)
-            
+                btns.forEach((button) => {
+                    if (button.textContent === 'Restart game') {
+                        // displayBoard1.textContent = 'click the button below';
+                        button.textContent = 'Start New Game';
+                        
+                        return;
+                    }
+                    else {
+                        button.disabled = true;
+                        document.getElementById('restartGame').disabled = false;
+                        rounds = 0;
+                        displayBoard1.textContent = 'New game';
+                        displayBoard2.textContent = 'Starting...'
+                        return;
+
+                    }
+                })
+            }
+            if (button.textContent === 'Start New Game') {
+                restartGame()
+                button.textContent = 'Restart game'
+                btns.forEach((button) => {
+                    button.disabled = false;
+                })
+            }
+
+            score();
+
         })
-        // console.log(userChoice + 'hhhhhhhhh')
-        // console.log(computerPlay() + '  12587jbjjkhrr');
     });
-     
-    // let userChoice = prompt("What's your choice").toLowerCase();
-    // if (userChoice === "") {
-    //   console.log("pls make a choice");
-    //   return "pls make a choice"
-    // }else
-    // {console.log(userChoice)
-    // return userChoice;}
-    // game()
+
 }
 
 function playRound(playerSelection, computerSelection) {
 
-  if (playerSelection == 'paper' && computerSelection == 'scissors') {
-    console.log('You lose')
-    return ('You lose');
-  }
-  else if (playerSelection == 'rock' && computerSelection == 'paper') {
-    console.log('You lose')
-    return ('You lose');
-  }
-  else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-    console.log('You lose')
-    return ('You lose');
-  }
-  else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-    console.log('You win')
-    return ('You win');
-  }
-  else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-    console.log('You win')
-    return ('You win');
-  }
-  else if (playerSelection == 'paper' && computerSelection == 'rock') {
-    console.log('You win')
-    return ('You win');
-  }
-  else
-    {console.log('Tie')}
-    
-    
+    if (playerSelection == 'paper' && computerSelection == 'scissors') {
+        console.log('You lose')
+        displayBoard2.textContent = `Opps! computer's scissors cuts your paper`;
+        return ('You lose');
+    }
+    else if (playerSelection == 'rock' && computerSelection == 'paper') {
+        console.log('You lose')
+        displayBoard2.textContent = `Opps! computer's paper covers your rock`;
+        return ('You lose');
+    }
+    else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+        console.log('You lose')
+        displayBoard2.textContent = `Opps! computer's rock crushes your scissors`;
+        return ('You lose');
+    }
+    else if (playerSelection == 'rock' && computerSelection == 'scissors') {
+        console.log('You win')
+        displayBoard2.textContent = `Heyyyyyy! your rock crushes computers' scissors`;
+        return ('You win');
+    }
+    else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+        console.log('You win')
+        displayBoard2.textContent = `Heyyyyyy! your scissors cuts computers' paper`;
+        return ('You win');
+    }
+    else if (playerSelection == 'paper' && computerSelection == 'rock') {
+        console.log('You win')
+        displayBoard2.textContent = `Heyyyyyy! your paper covers computers' rock`;
+        return ('You win');
+    }
+    else {
+        console.log('Tie');
+        displayBoard2.textContent = `That was a tie`;
+    }
 
-// retun ("You Lose! Paper beats Rock");
+    // retun ("You Lose! Paper beats Rock");
 }
 
-// console.log(playRound(playerSelection, computerSelection))
+
 
 function winner() {
-    if(rounds < 0){
-        console.log('kyfycyxmteum')
-     restartGame()}
-    else if (rounds === 0) {
+
+    if (rounds === 0) {
         if (playerScore > computerScore) {
-            return "You won by " + playerScore + " to " + computerScore;
-        } 
+            displayBoard1.textContent = "game over ";
+            displayBoard2.textContent = "You won by " + playerScore + " to " + computerScore;
+            return [displayBoard1, displayBoard2]
+        }
         else if (playerScore < computerScore) {
-            return "You lost by " + computerScore + " to " + playerScore;
-        } 
+            displayBoard1.textContent = "game over ";
+            displayBoard2.textContent = "You lost by " + playerScore + " to " + computerScore;
+            return [displayBoard1, displayBoard2]
+
+        }
         else {
             return "it's a tie"
         }
-    }else{
-        let roundsLeft = rounds + " to go ";
-        // console.log(roundsLeft)
-    return roundsLeft;
-    
+    } else {
+        let roundsLeft = rounds + " to gookhh ";
+        return roundsLeft;
+    }
 }
-// restartGame()
-// if(rounds < 0){
-//     console.log('kyfycyxmteum')
-//  restartGame()}
-
+function score() {
+    let scoreBoard1 = document.getElementById('sBoard1');
+    let scoreBoard2 = document.getElementById('sBoard2');
+    let scoreBoard3 = document.getElementById('sBoard3');
+    scoreBoard1.textContent = playerScore;
+    scoreBoard2.textContent = computerScore;
+    scoreBoard3.textContent = rounds;
+    console.log(rounds)
+    console.log(playerScore)
+    console.log(computerScore)
+    console.log(winner())
 }
- 
 function restartGame() {
-    // if (rounds === 5) {
-        rounds = 5;
-        playerScore = 0;
-        computerScore = 0;
-        // game();
-    // }
+    console.log('New game stated')
+    rounds = 5;
+    playerScore = 0;
+    computerScore = 0;
+    score();
 }
-
 
 function game() {
-//   for(let i = 0; i < 5; i++) {
-//   let playerSelection = userPlay();
-//   let computerSelection = computerPlay();   
-//   result = playRound(playerSelection, computerSelection)
-//     if (result == "You win") {
-//       playerScore++
-//     } else if (result == "You lose"){
-//       computerScore++
-//     }
-//   }
-
-userPlay()
-    //   let playerSelection = userPlay();
-    //   let computerSelection = computerPlay();   
-    //   result = playRound(playerSelection, computerSelection)
-    //     if (result == "You win") {
-    //       playerScore++
-    //     } else if (result == "You lose"){
-    //       computerScore++
-    //     }
-   
-    
-    // console.log(result)
-    // console.log(playerScore)
-    // console.log(computerScore)
-    // console.log(winner())
-    
-    // return result
-    
+    restartGame()
+    userPlay()
 }
 
 game();
